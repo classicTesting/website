@@ -1,2 +1,2 @@
-FROM hshar/webapp
-ADD . /var/www/html
+FROM nginx
+ADD . /usr/share/nginx/html
