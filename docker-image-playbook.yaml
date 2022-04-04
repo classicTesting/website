@@ -17,5 +17,5 @@
       become: no
       shell: |
         docker rm -f $(sudo docker ps -a -q)
-        docker build /home/ubuntu/website/. -t test3
-        docker run -it -p 85:80 -d test3
+        docker build /home/ubuntu/jenkins/workspace/ansible-deploy-on-production-server/. -t prod:$(sudo git rev-parse --short HEAD)
+        docker run -it -p 85:80 -d prod:$(sudo git rev-parse --short HEAD)
