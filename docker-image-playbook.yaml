@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - apt:
+        name: nginx
+        state: installed
+
+    - service: name=nginx state=started enabled=yes
+
+    - name: Deploy static website
+      copy:
+        src: /home/ubuntu/website/
+        dest: /usr/share/nginx/html/
+    - name: Build nginx
+      become: no
+      shell: |
+        docker rm -f $(sudo docker ps -a -q)
+        docker build /home/ubuntu/website/. -t test3
+        docker run -it -p 85:80 -d test3
