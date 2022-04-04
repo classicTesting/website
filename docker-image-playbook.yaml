@@ -11,7 +11,7 @@
 
     - name: Deploy static website
       copy:
-        src: /home/ubuntu/website/
+        src: .
         dest: /usr/share/nginx/html/
     - name: Build nginx
       become: no
